@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cosmic Birthday Show 🚀</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at bottom, #0a0a1b 0%, #000010 100%);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #aad8d3;
+      text-shadow: 0 0 20px #77b1f3, 0 0 40px #446fb3;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: fall 3s linear forwards;
+      box-shadow: 0 0 10px white;
+    }
+    @keyframes fall {
+      from { transform: translate(0,0) scale(1); opacity: 1; }
+      to { transform: translate(-200px,200px) scale(0.5); opacity: 0; }
+    }
+
+    .planet {
+      position: absolute;
+      font-size: 50px;
+      animation: float 6s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .rocket {
+      position: absolute;
+      font-size: 45px;
+      animation: launch 4s linear forwards;
+    }
+    @keyframes launch {
+      from { bottom: 0; left: 50%; transform: translateX(-50%) scale(1); }
+      to { bottom: 100%; left: 50%; transform: translateX(-50%) scale(1.5); opacity: 0; }
+    }
+
+    .letter {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.6em;
+      color: #aee1f9;
+      text-shadow: 0 0 10px #77b1f3;
+      animation: typing 5s steps(60) forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #aee1f9;
+      width: 0;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌌 Happy Birthday, Professor! 🚀</h1>
+  <div class="letter" id="letter">
+    💖 Wishing you cosmic wonders, boundless inspiration, and stars in every step ✨
+  </div>
+
+  <!-- Music: replace with a royalty-free Interstellar-style track you have rights to -->
+  <audio id="song" src="interstellar-ambient.mp3" preload="auto"></audio>
+
+  <script>
+    function shootStars() {
+      for (let i = 0; i < 10; i++) {
+        let s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = "0px";
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 3000);
+      }
+    }
+
+    function showPlanets() {
+      let planet = document.createElement("div");
+      planet.className = "planet";
+      planet.innerHTML = ["🪐","🌍","🌕","☄️"][Math.floor(Math.random()*4)];
+      planet.style.left = Math.random() * 100 + "vw";
+      planet.style.top = Math.random() * 70 + "vh";
+      document.body.appendChild(planet);
+      setTimeout(() => planet.remove(), 6000);
+    }
+
+    function launchRocket() {
+      let rocket = document.createElement("div");
+      rocket.className = "rocket";
+      rocket.innerHTML = "🚀";
+      document.body.appendChild(rocket);
+      setTimeout(() => rocket.remove(), 4000);
+    }
+
+    function showLetter() {
+      let letter = document.getElementById("letter");
+      letter.style.display = "block";
+    }
+
+    function playMusic() {
+      let song = document.getElementById("song");
+      song.play();
+    }
+
+    // Automatic show sequence
+    setTimeout(() => playMusic(), 1000);       // music start
+    setInterval(() => shootStars(), 2500);     // stars every 2.5s
+    setInterval(() => showPlanets(), 5500);    // planets every ~5.5s
+    setInterval(() => launchRocket(), 9000);   // rocket every ~9s
+    setTimeout(() => showLetter(), 13000);     // final message around 13s
+  </script>
+</body>
+</html>
